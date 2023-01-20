@@ -4,7 +4,7 @@ use std::str;
 
 fn main() {
     // Avoid unnecessary re-building.
-    println!("cargo:rerun-if-changed=build.rs");
+    //println!("cargo:rerun-if-changed=build.rs");
 
     let (rustc_minor_ver, is_nightly) = rustc_minor_nightly();
     let rustc_dep_of_std = env::var("CARGO_FEATURE_RUSTC_DEP_OF_STD").is_ok();
