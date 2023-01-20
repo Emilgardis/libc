@@ -123,11 +123,12 @@ fn rustc_minor_nightly() -> (u32, bool) {
     }
 
     let rustc = otry!(env::var_os("RUSTC"));
-    let output = Command::new(rustc)
-        .arg("--version")
-        .output()
-        .ok()
-        .expect("Failed to get rustc version");
+    println!("cargo:warning=rustc={:?}", rustc.to_string_lossy());
+    let output = Command::new(rustc).arg("--version").output();
+
+    println!("cargo:warning=output={:?}", output);
+
+    let output = output.ok().expect("Failed to get rustc version");
     let version = otry!(str::from_utf8(&output.stdout).ok());
     let mut pieces = version.split('.');
 
